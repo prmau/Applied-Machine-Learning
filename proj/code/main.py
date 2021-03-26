@@ -5,18 +5,25 @@ import pandas as pd
 from imblearn.over_sampling import SMOTE
 from yellowbrick.target import ClassBalance
 from sklearn import preprocessing
-
+from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
+import seaborn as sns
+from pylab import savefig
 
 sys.path.append(".")
-
 
 #Main Function
 def main():
     script = sys.argv[0]
-    fname= sys.argv[1]
+    fname = sys.argv[1]
     extra_args = sys.argv[2]
 
-    df = pd.read_csv('data/Human_Activity_Recognition_Using_Smartphones_Data.csv')
+    #Validation to check the filename
+    if fname!='data/Human_Activity_Recognition_Using_Smartphones_Data.csv':
+        print("please enter correct dataset filename")
+    else: 
+        df = pd.read_csv(fname)
+
     print(df.head(5))
 
     #Data stats
@@ -44,25 +51,13 @@ def main():
     print("Checking for any null values")
     print(df.isnull().values.any())
 
-
-    #Data Preprocessing - step 2(Covariance/Correlation, standardization)
+    #Data Preprocessing - step 3(Addressing class imbalance problem)
 
     print("\n-------Data Preprocessing - Step 2--------")
     print("------------------------------------------")
 
-    #Covariance and correlation - Task 1(JunYong or Preeti)
-
-    #Standardize the dataset - Task 2(JunYong or Preeti)
-
-
-    #Data Preprocessing - step 3(Addressing class imbalance problem)
-
-    print("\n-------Data Preprocessing - Step 3--------")
-    print("------------------------------------------")
-
     Y = pd.DataFrame(data=df['Activity'])
-    X= df.drop(['Activity'], axis=1)
-
+    X = df.drop(['Activity'], axis=1)
 
     print("Before applying SMOTE algorithm")
     print("Unique values and count of target column 'Activity -'")
@@ -103,7 +98,7 @@ def main():
     visualizer.show("output/Class-balance-After-SMOTE.png")
 
     #Data Preprocessing - step 4(Label Encoding)
-    print("\n-------Data Preprocessing - Step 4--------")
+    print("\n-------Data Preprocessing - Step 3--------")
     print("------------------------------------------")
 
     #Convert the string labels to integers
@@ -118,11 +113,35 @@ def main():
     print("After label encoding, the target values are")
     print(Y_1_df['Activity'])
 
+    #Data Preprocessing - step 5(Covariance/Correlation, standardization)
 
-    #Data preprocessing - Step 5(Splitting the training and testing dataset) (JunYong or Preeti)
+    print("\n-------Data Preprocessing - Step 4--------")
+    print("------------------------------------------")
+    #Covariance and correlation - Task 1(Preeti)
+    dfCov = np.cov(X_1_df, Y_1_df,rowvar=False, bias=True)
+    print(dfCov)
+
+    #Calculates Pearson product-moment correlation coefficients
+    dfCorr = np.corrcoef(X_1_df,Y_1_df,rowvar=False, bias=True)
+    print("Correlation coefficient obtained : ", dfCorr)
+
+    #Data preprocessing - Step 6(Splitting the training and testing dataset) (JunYong or Preeti)
     print("\n-------Data Preprocessing - Step 5(Splitting into training and testing dataset)--------")
     print("------------------------------------------")
+    X_train, X_test, y_train, y_test = train_test_split(X_1_df,Y_1_df,random_state=1, test_size=0.2)
+    
+    #Data preprocessing - Step 7(Standardize the dataset)
+    print("\n-------Data Preprocessing - Step 6--------")
+    print("------------------------------------------")
+    sc_X = preprocessing.StandardScaler()
+    X_trainscaled = sc_X.fit_transform(X_train)
+    X_testscaled = sc_X.transform(X_test)
 
+    print("Mean of the standardized training set : ", X_trainscaled.mean(axis=0))
+    print("std of the standardized training set : ", X_trainscaled.std(axis=0))
+
+    print("Mean of the standardized test set : ", X_testscaled.mean(axis=0))
+    print("std of the standardized test set : ", X_testscaled.std(axis=0))
 
 #Calling main function
 if __name__ == '__main__':
