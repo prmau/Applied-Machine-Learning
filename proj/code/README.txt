@@ -12,3 +12,10 @@ pip3 install yellowbrick
 
 
 How to run the python program?
+
+First argu: main.py
+Second argu: data/Human_Activity_Recognition_Using_Smartphones_Data.csv
+Third argu(optional) : model name
+
+
+python3 main.py data/Human_Activity_Recognition_Using_Smartphones_Data.csv decisiontree

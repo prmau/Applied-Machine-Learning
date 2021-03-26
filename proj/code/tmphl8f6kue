@@ -1,0 +1,29 @@
+#Decision tree-classification
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
+import time
+
+def decisionTreeTest(X_train, X_test, y_train, y_test, maxdepth):\
+    
+    
+    start = time.time()
+    
+    
+    
+    # Create Decision Tree classifer object
+    clf = DecisionTreeClassifier(max_depth=maxdepth)
+
+    # Train Decision Tree Classifer
+    clf = clf.fit(X_train,y_train)
+    
+    #Predict the response for test dataset
+    y_pred = clf.predict(X_test)
+    
+    print('-----------------------------')    
+    print('DecisionTree Test was Called')
+    print('Accuracy: %.2f' % accuracy_score(y_test, y_pred))
+    print('-----------------------------')
+    
+    
+    end = time.time()
+    print('Running Time is: ', end - start, "seconds")

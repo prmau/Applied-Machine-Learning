@@ -10,19 +10,53 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from pylab import savefig
 
+
+#Import model modules
+import decisiontree
+import metrics
+import svm
+import svmnonlinear
+
+
 sys.path.append(".")
 
-#Main Function
-def main():
-    script = sys.argv[0]
-    fname = sys.argv[1]
-    extra_args = sys.argv[2]
 
+def argcheck():
+    
+    script = sys.argv[0]
+        
+    fname = sys.argv[1]
+    
+    model = ''
+    
+    
+    if len(sys.argv) > 2:    
+        model =sys.argv[2] 
+        return script, fname, model
+    #extra_args = sys.argv[3]
+    
+    return script, fname, model
+    
+
+def filecheck(fname):
+    
     #Validation to check the filename
     if fname!='data/Human_Activity_Recognition_Using_Smartphones_Data.csv':
         print("please enter correct dataset filename")
     else: 
         df = pd.read_csv(fname)
+        return df
+
+
+
+#Main Function
+def main():
+    
+    script, fname, model = argcheck()
+
+    df = filecheck(fname)
+
+
 
     print(df.head(5))
 
@@ -143,6 +177,20 @@ def main():
     print("Mean of the standardized test set : ", X_testscaled.mean(axis=0))
     print("std of the standardized test set : ", X_testscaled.std(axis=0))
 
+
+
+    
+    # Execute different model module based on input from user
+
+    if model == 'decisiontree':
+        
+        decisiontree.decisionTreeTest(X_train, X_test, y_train, y_test)
+
+    #elif model == svm
+    
+    #elif model == svmnonlinear
+
 #Calling main function
 if __name__ == '__main__':
     main()
+    
