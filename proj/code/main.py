@@ -51,7 +51,7 @@ def main():
     print("Checking for any null values")
     print(df.isnull().values.any())
 
-    #Data Preprocessing - step 3(Addressing class imbalance problem)
+    #Data Preprocessing - step 2(Addressing class imbalance problem)
 
     print("\n-------Data Preprocessing - Step 2--------")
     print("------------------------------------------")
@@ -97,7 +97,7 @@ def main():
     visualizer.fit(Y_1_df.values.ravel())
     visualizer.show("output/Class-balance-After-SMOTE.png")
 
-    #Data Preprocessing - step 4(Label Encoding)
+    #Data Preprocessing - step 3(Label Encoding)
     print("\n-------Data Preprocessing - Step 3--------")
     print("------------------------------------------")
 
@@ -113,7 +113,7 @@ def main():
     print("After label encoding, the target values are")
     print(Y_1_df['Activity'])
 
-    #Data Preprocessing - step 5(Covariance/Correlation, standardization)
+    #Data Preprocessing - step 4(Covariance/Correlation, standardization)
 
     print("\n-------Data Preprocessing - Step 4--------")
     print("------------------------------------------")
@@ -125,12 +125,12 @@ def main():
     dfCorr = np.corrcoef(X_1_df,Y_1_df,rowvar=False, bias=True)
     print("Correlation coefficient obtained : ", dfCorr)
 
-    #Data preprocessing - Step 6(Splitting the training and testing dataset) (JunYong or Preeti)
+    #Data preprocessing - Step 5(Splitting the training and testing dataset) (JunYong or Preeti)
     print("\n-------Data Preprocessing - Step 5(Splitting into training and testing dataset)--------")
     print("------------------------------------------")
     X_train, X_test, y_train, y_test = train_test_split(X_1_df,Y_1_df,random_state=1, test_size=0.2)
     
-    #Data preprocessing - Step 7(Standardize the dataset)
+    #Data preprocessing - Step 6(Standardize the dataset)
     print("\n-------Data Preprocessing - Step 6--------")
     print("------------------------------------------")
     sc_X = preprocessing.StandardScaler()
