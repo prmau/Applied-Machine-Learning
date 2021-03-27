@@ -186,9 +186,11 @@ def main():
         
         decisiontree.decisionTreeTest(X_train, X_test, y_train, y_test)
 
-    #elif model == svm
+    #elif model == svm:
     
-    #elif model == svmnonlinear
+    elif model == 'svmnonlinear':
+        svmnonlinear.svmNonLinearTest(X_train, X_test, y_train, y_test)
+
 
 #Calling main function
 if __name__ == '__main__':

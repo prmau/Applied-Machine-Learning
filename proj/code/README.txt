@@ -18,4 +18,5 @@ Second argu: data/Human_Activity_Recognition_Using_Smartphones_Data.csv
 Third argu(optional) : model name
 
 
-python3 main.py data/Human_Activity_Recognition_Using_Smartphones_Data.csv decisiontree
+1) python3 main.py data/Human_Activity_Recognition_Using_Smartphones_Data.csv decisiontree
+2) python3 main.py data/Human_Activity_Recognition_Using_Smartphones_Data.csv svmnonlinear
