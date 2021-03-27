@@ -15,7 +15,7 @@ def decisionTreeTest(X_train, X_test, y_train, y_test):\
     
     
     # Create Decision Tree classifer object
-    clf_gini = DecisionTreeClassifier()
+    clf_gini = DecisionTreeClassifier(criterion='gini')
 
     # Train Decision Tree Classifer
     clf = clf_gini.fit(X_train,y_train)
@@ -32,7 +32,7 @@ def decisionTreeTest(X_train, X_test, y_train, y_test):\
     
     
     
-    clf_entropy = DecisionTreeClassifier()
+    clf_entropy = DecisionTreeClassifier(criterion='entropy')
     
     clf2 = clf_entropy.fit(X_train, y_train)
     y_pred = clf2.predict(X_test)
