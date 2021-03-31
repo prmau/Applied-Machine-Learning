@@ -186,7 +186,7 @@ def main():
 
     if model == 'decisiontree':
         
-        decisiontree.decisionTreeTest(X_train, X_test, y_train, y_test)
+        decisiontree.decisionTreeTest(X_train, X_test, y_train, y_test, classes)
 
     elif model == 'svm':
         svm.svmLinearTest(X_train, X_test, y_train, y_test, classes)
