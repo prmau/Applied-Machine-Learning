@@ -93,6 +93,7 @@ def main():
     Y = pd.DataFrame(data=df['Activity'])
     X = df.drop(['Activity'], axis=1)
 
+
     print("Before applying SMOTE algorithm")
     print("Unique values and count of target column 'Activity -'")
     print(df.groupby('Activity').nunique())
@@ -100,9 +101,9 @@ def main():
     unique_labels, frequency = np.unique(Y, return_counts=True)
     #Generating class balance chart before applying SMOTE. The chart is generated as 'Class-balance-Before-SMOTE.png' in the 'output directory'
     print("The class balance is generated as 'Class-balance-Before-SMOTE.png'")
-    visualizer = ClassBalance(labels = unique_labels, size=(1400, 1000))
-    visualizer.fit(Y.values.ravel())
-    visualizer.show("output/Class-balance-Before-SMOTE.png")
+    visualizer1 = ClassBalance(labels = unique_labels, size=(1400, 1000))
+    visualizer1.fit(Y.values.ravel())
+    visualizer1.show("output/Class-balance-Before-SMOTE.png")
 
     #Solving the class imbalance problem by oversampling the data
     smote = SMOTE(random_state=1)
@@ -127,9 +128,9 @@ def main():
 
     #Generating class balance chart after applying SMOTE. The chart is generated as 'Class-balance-After-SMOTE.png' in the 'output directory'
     print("The class balance is generated as 'Class-balance-After-SMOTE.png'")
-    visualizer = ClassBalance(labels = unique_labels, size=(1400, 1000))
-    visualizer.fit(Y_1_df.values.ravel())
-    visualizer.show("output/Class-balance-After-SMOTE.png")
+    visualizer2 = ClassBalance(labels = unique_labels, size=(1400, 1000))
+    visualizer2.fit(Y_1_df.values.ravel())
+    visualizer2.show("output/Class-balance-After-SMOTE.png")
 
     #Data Preprocessing - step 3(Label Encoding)
     print("\n-------Data Preprocessing - Step 3--------")
@@ -145,6 +146,7 @@ def main():
     label_encoder = preprocessing.LabelEncoder()
     Y_1_df['Activity'] = label_encoder.fit_transform(Y_1_df['Activity'])
     print("After label encoding, the target values are")
+    classes = Y_1_df['Activity'].unique()
     print(Y_1_df['Activity'])
 
     #Data Preprocessing - step 4(Covariance/Correlation, standardization)
@@ -186,7 +188,8 @@ def main():
         
         decisiontree.decisionTreeTest(X_train, X_test, y_train, y_test)
 
-    #elif model == svm:
+    elif model == 'svm':
+        svm.svmLinearTest(X_train, X_test, y_train, y_test, classes)
     
     elif model == 'svmnonlinear':
         svmnonlinear.svmNonLinearTest(X_train, X_test, y_train, y_test)
