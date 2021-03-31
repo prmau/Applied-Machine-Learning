@@ -20,7 +20,7 @@ def svmLinearTest(X_train, X_test, y_train, y_test, classes):
     trainAccuracy = []
     testAccuracy = []
 
-    #fit the training dataset to rbf kernel model
+    #fit the training dataset to linear kernel model
     #capture the start time
     for i in c:
         start = time.time()
