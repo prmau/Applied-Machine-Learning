@@ -79,7 +79,7 @@ def svmNonLinearTest(X_train, X_test, y_train, y_test):
         # fit the training dataset to rbf kernel model
         # capture the start time
         start = time.time()
-        rbf_svc = SVC(kernel = 'rbf', gamma=0.7, C=1.0)
+        rbf_svc = SVC(kernel = 'rbf', gamma=0.7, C=i, random_state=1)
         rbf_svc.fit(X_train, y_train.values.ravel())
 
         y_pred_rbf = rbf_svc.predict(X_test)
@@ -90,8 +90,10 @@ def svmNonLinearTest(X_train, X_test, y_train, y_test):
         runningTime.append(end-start)
         testAccuracy.append(accuracy_score(y_test, y_pred_rbf))
 
+    print("printing test accuracies for rbf kernel : ", testAccuracy)
     plot_graph("svm-nonlinear", "rbf", X_train, y_train, X_test, y_test, c, runningTime, testAccuracy, trainAccuracy)
 
+    c = [0.01, 0.1, 1.0, 5, 10, 15,20]
     runningTime = []
     trainAccuracy = []
     testAccuracy = []
@@ -100,7 +102,7 @@ def svmNonLinearTest(X_train, X_test, y_train, y_test):
         # fit the training dataset to poly kernel model
         # capture the start time
         start = time.time()
-        poly_svc = SVC(kernel = 'poly', degree=3, C=1.0)
+        poly_svc = SVC(kernel = 'poly', gamma=0.7, C=i, random_state=1)
         poly_svc.fit(X_train, y_train.values.ravel())
 
         y_pred_poly = poly_svc.predict(X_test)
@@ -109,8 +111,9 @@ def svmNonLinearTest(X_train, X_test, y_train, y_test):
 
         #Storing the metrics
         runningTime.append(end-start)
-        testAccuracy.append(accuracy_score(y_test, y_pred_rbf))
+        testAccuracy.append(accuracy_score(y_test, y_pred_poly))
 
+    print("printing test accuracies for poly kernel : ", testAccuracy)
     plot_graph("svm-nonlinear", "poly", X_train, y_train,X_test, y_test,c,runningTime, testAccuracy, trainAccuracy)
     
     return 
