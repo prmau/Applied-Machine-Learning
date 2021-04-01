@@ -23,7 +23,7 @@ def plot_graph(folder_name, model, X_train, y_train, X_test,y_test,c, runningTim
         plt.xlabel('C Param value')
         plt.ylabel('Accuracy')
         plt.title("Test Accuracy")
-        strFile = str(path)+"/output/"+folder_name+"/"+model+"/Test Accuracy.png"
+        strFile = str(path)+"/output/"+folder_name+"/"+model+"/Test_Accuracy.png"
 
         print(os.path.isfile(strFile))
         if os.path.isfile(strFile):
@@ -37,7 +37,7 @@ def plot_graph(folder_name, model, X_train, y_train, X_test,y_test,c, runningTim
         plt.xlabel('C Param value')
         plt.ylabel('Running time(seconds)')
         plt.title("Running time")
-        strFile = str(path)+"/output/"+folder_name+"/"+model+"/Running Time.png"
+        strFile = str(path)+"/output/"+folder_name+"/"+model+"/Running_Time.png"
 
         if os.path.isfile(strFile):
             os.remove(strFile)
@@ -57,7 +57,7 @@ def plot_graph(folder_name, model, X_train, y_train, X_test,y_test,c, runningTim
         vizualizer = ClassificationReport(SVC(kernel=model, gamma = 0.7, C= c[max_index], random_state=1), classes=[0,1,2,3,4,5], support=True, size=(1400, 1000))
         vizualizer.fit(X_train, y_train.values.ravel())
         vizualizer.score(X_test, y_test)
-        strFile = str(path)+"/output/"+folder_name+"/"+model+"/Classification Report.png"
+        strFile = str(path)+"/output/"+folder_name+"/"+model+"/Classification_Report.png"
 
         if os.path.isfile(strFile):
             os.remove(strFile)
