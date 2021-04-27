@@ -16,6 +16,8 @@ import decisiontree
 import metrics
 import svm
 import svmnonlinear
+import naiveBayes
+import logisticregression
 
 
 sys.path.append(".")
@@ -179,13 +181,9 @@ def main():
     print("Mean of the standardized test set : ", X_testscaled.mean(axis=0))
     print("std of the standardized test set : ", X_testscaled.std(axis=0))
 
-
-
     
     # Execute different model module based on input from user
-
     if model == 'decisiontree':
-        
         decisiontree.decisionTreeTest(X_train, X_test, y_train, y_test, classes)
 
     elif model == 'svm':
@@ -193,6 +191,16 @@ def main():
     
     elif model == 'svmnonlinear':
         svmnonlinear.svmNonLinearTest(X_train, X_test, y_train, y_test)
+    
+    elif model == 'naivebayes':
+        naiveBayes.naiveBayesClassifierTest(X_train, X_test, y_train, y_test)
+    
+    elif model == 'logisticregression':
+        logisticregression.logisticRegressionTest(X_train, X_test, y_train, y_test)
+    
+    else:
+        print("please enter the correct classifier name")
+        sys.exit()
 
 
 #Calling main function
