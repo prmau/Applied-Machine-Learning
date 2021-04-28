@@ -26,7 +26,7 @@ def knnTest(X_train, X_test, y_train, y_test):
         # capture the start time
         start = time.time()
 
-        neigh = KNeighborsClassifier(n_neighbors=3)
+        neigh = KNeighborsClassifier(n_neighbors=i)
         neigh.fit(X_train, np.ravel(y_train))
         y_pred_knn = neigh.predict(X_test)
         # capture the end time of calculation
@@ -43,8 +43,6 @@ def knnTest(X_train, X_test, y_train, y_test):
     plt.clf()
 
     #Generating Test accuracy plot
-
-
     plt.plot(c, testAccuracy, 'ro-')
     plt.legend(['Test Accuracy'])
     plt.xlabel('n_neighbors')
