@@ -1,5 +1,3 @@
-from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
 from yellowbrick.classifier import ClassificationReport
 from sklearn import metrics
@@ -23,7 +21,7 @@ def naiveBayesClassifierTest(X_train, X_test, y_train, y_test):
     # capture the end time of calculation
     end = time.time()
 
-    print("Time taken to train model and prediction :", end-start)
+    print("Time taken to train model and prediction :", end-start , "seconds")
 
     print("Number of mislabeled points out of a total %d points : %d" % (X_test.shape[0], (np.ravel(y_test)!= y_pred).sum()))
     
@@ -31,9 +29,9 @@ def naiveBayesClassifierTest(X_train, X_test, y_train, y_test):
     print("Gaussian Naive Bayes model accuracy(in %):", metrics.accuracy_score(y_test, y_pred)*100)
 
     #Printing the metrics/Generating visualization
-    print("Classification report, class prediction error, Test accuracy, Running time for SVM-Linear is generated in the output folder")
+    print("Classification report, class prediction error, Test accuracy, Running time for Naive Bayes is generated in the output folder")
     #Printing the classification report
-    vizualizer = ClassificationReport(gnb, classes = [0,1,2,3,4,5])
+    vizualizer = ClassificationReport(GaussianNB(), classes = [0,1,2,3,4,5])
     vizualizer.fit(X_train, y_train.values.ravel())
     vizualizer.score(X_test, y_test)
     strFile = str(path)+"/output/GaussianNB"+"/Classification Report.png"
