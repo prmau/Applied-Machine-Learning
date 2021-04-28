@@ -22,7 +22,6 @@ import knn
 
 import bagging
 import adaboost
-import randomforest
 
 sys.path.append(".")
 
@@ -207,8 +206,6 @@ def main():
         bagging.baggingTest(X_train, X_test, y_train, y_test)
     elif model == 'adaboost':
         adaboost.adaboostTest(X_train, X_test, y_train, y_test)
-    elif model == 'randomforest':
-        randomforest.randomForestTest(X_train, X_test, y_train, y_test)
     
     
     else:
