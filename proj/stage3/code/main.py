@@ -18,6 +18,7 @@ import svm
 import svmnonlinear
 import naiveBayes
 import logisticregression
+import knn
 
 
 sys.path.append(".")
@@ -48,7 +49,6 @@ def filecheck(fname):
     else: 
         df = pd.read_csv(fname)
         return df
-
 
 
 #Main Function
@@ -198,6 +198,9 @@ def main():
     elif model == 'logisticregression':
         logisticregression.logisticRegressionTest(X_train, X_test, y_train, y_test)
     
+    elif model == 'knn':
+        knn.knnTest(X_train, X_test, y_train, y_test)
+
     else:
         print("please enter the correct classifier name")
         sys.exit()
