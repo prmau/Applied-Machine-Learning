@@ -15,7 +15,7 @@ def svmLinearTest(X_train, X_test, y_train, y_test, classes):
     print('SVM Linear Test was Called. Wait...')
     path = Path(__file__).parent.absolute()
 
-    c= [0.01, 0.1, 1.0, 5, 10, 15,20]
+    c= [0.01, 0.1,0.2, 0.4, 0.6, 0.8, 1.0, 5, 10, 15,20]
     runningTime = []
     trainAccuracy = []
     testAccuracy = []
@@ -28,11 +28,13 @@ def svmLinearTest(X_train, X_test, y_train, y_test, classes):
         svc.fit(X_train, y_train.values.ravel())
 
         y_pred_linear = svc.predict(X_test)
+        y_train_pred_linear = svc.predict(X_train)
         # capture the end time of calculation
         end = time.time()
 
         #Storing the metrics
         runningTime.append(end-start)
+        trainAccuracy.append(accuracy_score(y_train, y_train_pred_linear))
         testAccuracy.append(accuracy_score(y_test, y_pred_linear))
 
     #Printing the metrics/Generating visualization
@@ -46,14 +48,13 @@ def svmLinearTest(X_train, X_test, y_train, y_test, classes):
     #Generating Test accuracy plot
 
 
-    plt.plot(c, testAccuracy, 'ro-')
-    plt.legend(['Test Accuracy'])
+    plt.plot(c, trainAccuracy, 'ro-', c, testAccuracy, 'bv--')
+    plt.legend(['Train Accuracy', 'Test Accuracy'])
     plt.xlabel('C Param value')
     plt.ylabel('Accuracy')
-    plt.title("Test Accuracy")
-    strFile = str(path)+"/output/svm-linear"+"/Test Accuracy.png"
+    plt.title("SVMLinear-Accuracy")
+    strFile = str(path)+"/output/svm-linear"+"/Accuracy.png"
 
-    print(os.path.isfile(strFile))
     if os.path.isfile(strFile):
         os.remove(strFile)
     plt.savefig(strFile)

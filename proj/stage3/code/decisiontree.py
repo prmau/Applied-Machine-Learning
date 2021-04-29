@@ -7,7 +7,7 @@ from yellowbrick.classifier import ClassificationReport
 from yellowbrick.classifier import ClassPredictionError
 import matplotlib.pyplot as plt
 import os
-def decisionTreeTest(X_train, X_test, y_train, y_test, classes):\
+def decisionTreeTest(X_train, X_test, y_train, y_test, classes):
     
     print('-----------------------------')    
     print('DecisionTree Test was Called. Wait...')
@@ -15,7 +15,7 @@ def decisionTreeTest(X_train, X_test, y_train, y_test, classes):\
     
     
     path = Path(__file__).parent.absolute()
-    depths= [2, 5, 10, 20]
+    depths= list(range(1, 51))
     runningTime = []
     trainAccuracy = []
     testAccuracy = []
@@ -28,11 +28,13 @@ def decisionTreeTest(X_train, X_test, y_train, y_test, classes):\
         clf_gini.fit(X_train, y_train.values.ravel())
 
         y_pred_gini = clf_gini.predict(X_test)
+        y_train_pred_gini = clf_gini.predict(X_train)
         # capture the end time of calculation
         end = time.time()
 
         #Storing the metrics
         runningTime.append(end-start)
+        trainAccuracy.append(accuracy_score(y_train, y_train_pred_gini))
         testAccuracy.append(accuracy_score(y_test, y_pred_gini))
     
     #print(trainAccuracy)
@@ -49,12 +51,12 @@ def decisionTreeTest(X_train, X_test, y_train, y_test, classes):\
     #Generating Test accuracy plot
 
 
-    plt.plot(depths, testAccuracy, 'ro-')
-    plt.legend(['Test Accuracy'])
+    plt.plot(depths, trainAccuracy, 'ro-',depths, testAccuracy, 'bv--')
+    plt.legend(['Train Accuracy', 'Test Accuracy'])
     plt.xlabel('max_depth values')
     plt.ylabel('Accuracy')
-    plt.title("Test Accuracy")
-    strFile = str(path)+"/output/DecisionTree"+"/Test Accuracy.png"
+    plt.title("Decison Tree - Accuracy")
+    strFile = str(path)+"/output/DecisionTree"+"/Accuracy.png"
 
     print(os.path.isfile(strFile))
     if os.path.isfile(strFile):

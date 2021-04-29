@@ -24,3 +24,16 @@ Third argu(optional) : model name
 4) python3 main.py data/Human_Activity_Recognition_Using_Smartphones_Data.csv naivebayes
 5) python3 main.py data/Human_Activity_Recognition_Using_Smartphones_Data.csv logisticregression
 6) python3 main.py data/Human_Activity_Recognition_Using_Smartphones_Data.csv knn
+
+
+
+Things done-
+decision tree,
+svm - linear,
+
+Things to be done -
+svm -nonlinear check why the train and test accuracy is same.
+logistic regression - needs to run again and verify.
+
+
+Get the final running times from cluster and one of the teamates - after code freeze
