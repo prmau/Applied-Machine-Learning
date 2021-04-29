@@ -21,3 +21,6 @@ Third argu(optional) : model name
 1) python3 main.py data/Human_Activity_Recognition_Using_Smartphones_Data.csv decisiontree
 2) python3 main.py data/Human_Activity_Recognition_Using_Smartphones_Data.csv svmnonlinear
 3) python3 main.py data/Human_Activity_Recognition_Using_Smartphones_Data.csv svm
+4) python3 main.py data/Human_Activity_Recognition_Using_Smartphones_Data.csv naivebayes
+5) python3 main.py data/Human_Activity_Recognition_Using_Smartphones_Data.csv logisticregression
+6) python3 main.py data/Human_Activity_Recognition_Using_Smartphones_Data.csv knn
