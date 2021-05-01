@@ -32,7 +32,7 @@ def decisionTreeTest(X_train, X_test, y_train, y_test, classes,  X_1_df, Y_1_df)
     #capture the start time
     for i in depths:
         start = time.time()
-        clf_gini = DecisionTreeClassifier(criterion='gini', max_depth=i, random_state=1)
+        clf_gini = DecisionTreeClassifier(criterion='gini', max_depth=i)
         clf_gini.fit(X_train, y_train.values.ravel())
 
         y_pred_gini = clf_gini.predict(X_test)

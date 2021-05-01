@@ -24,7 +24,7 @@ def baggingTest(X_train, X_test, y_train, y_test, X_1_df, Y_1_df):
     
     
     path = Path(__file__).parent.absolute()
-    depths= list(range(1, 22))
+    depths= list(range(1, 24))
     runningTime = []
     trainAccuracy = []
     testAccuracy = []
@@ -34,8 +34,8 @@ def baggingTest(X_train, X_test, y_train, y_test, X_1_df, Y_1_df):
     #capture the start time
     for i in depths:
         start = time.time()
-
-        clf = BaggingClassifier(base_estimator=DecisionTreeClassifier(max_depth=i), random_state=1, n_estimators=100)
+        
+        clf = BaggingClassifier(base_estimator=DecisionTreeClassifier(max_depth=i), random_state=1, n_estimators=1000)
         clf.fit(X_train, y_train.values.ravel())
         
         y_pred = clf.predict(X_test)

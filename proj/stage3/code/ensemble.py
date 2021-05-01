@@ -33,10 +33,10 @@ def ensembleClassifier(X_train, X_test, y_train, y_test, X_1_df, Y_1_df):
     clf1 = LogisticRegression(C=5.0,  class_weight='balanced', max_iter=10000, random_state= 1 )  # C = 5.0
     clf2 = SVC(kernel = 'linear', C=1.0, random_state=1)  # linear SVM C = 1.0
     clf3 = KNeighborsClassifier(n_neighbors=1)  # optimum_k = 1
-    clf4 = DecisionTreeClassifier(max_depth=21, criterion='gini')  #
+    clf4 = DecisionTreeClassifier(max_depth=23, criterion='gini')  #
 
     labels = ['Logistic Regression', 'Support Vector Machine', 'K Nearest Neighbor', 'Decision Tree', 'Ensemble']
-    eclf = EnsembleVoteClassifier(clfs=[clf1, clf2, clf3, clf4], weights=[1, 1, 1, 1])
+    eclf = EnsembleVoteClassifier(clfs=[clf1, clf2, clf3, clf4], weights=[1, 1, 1, 1], random_state =1)
 
     for clf, label in zip([clf1, clf2, clf3, clf4, eclf], labels):
         clf.fit(X_1_df, Y_1_df)
