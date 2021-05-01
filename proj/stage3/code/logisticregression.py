@@ -47,7 +47,7 @@ def logisticRegressionTest(X_train, X_test, y_train, y_test, X_1_df, Y_1_df):
     print("Classification report, class prediction error, Test accuracy, Running time for LR is generated in the output folder")
 
     #Creates a new directory under svm-linear if it doesn't exist
-    Path("output/knn/").mkdir(parents=True, exist_ok=True)
+    Path("output/logistic-regression/").mkdir(parents=True, exist_ok=True)
     plt.clf()
 
     #Generating Test accuracy plot

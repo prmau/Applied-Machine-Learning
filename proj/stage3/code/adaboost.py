@@ -26,7 +26,7 @@ def adaboostTest(X_train, X_test, y_train, y_test, X_1_df, Y_1_df):
     
     
     path = Path(__file__).parent.absolute()
-    depths= list(range(1, 22))
+    depths= list(range(1, 24))
     runningTime = []
     trainAccuracy = []
     testAccuracy = []
@@ -41,13 +41,14 @@ def adaboostTest(X_train, X_test, y_train, y_test, X_1_df, Y_1_df):
         clf.fit(X_train, y_train.values.ravel())
         
         y_pred = clf.predict(X_test)
-        
+        y_train_pred = clf.predict(X_train)
         # capture the end time of calculation
         end = time.time()
 
         #Storing the metrics
         param.append(i)
         runningTime.append(end-start)
+        trainAccuracy.append(accuracy_score(y_train, y_train_pred))
         testAccuracy.append(accuracy_score(y_test, y_pred))
     
     #print(trainAccuracy)
@@ -55,7 +56,7 @@ def adaboostTest(X_train, X_test, y_train, y_test, X_1_df, Y_1_df):
     
     
     #Printing the metrics/Generating visualization
-    print("Classification report, class prediction error, Test accuracy, Running time for Bagging is generated in the output folder")
+    print("Classification report, class prediction error, Test accuracy, Running time for AdaBoost is generated in the output folder")
     #Creates a new directory under svm-linear if it doesn't exist
     Path("output/adaboost/").mkdir(parents=True, exist_ok=True)
     plt.clf()
