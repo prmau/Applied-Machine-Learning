@@ -24,3 +24,23 @@ Third argu(optional) : model name
 4) python3 main.py data/Human_Activity_Recognition_Using_Smartphones_Data.csv naivebayes
 5) python3 main.py data/Human_Activity_Recognition_Using_Smartphones_Data.csv logisticregression
 6) python3 main.py data/Human_Activity_Recognition_Using_Smartphones_Data.csv knn
+7) python3 main.py data/Human_Activity_Recognition_Using_Smartphones_Data.csv randomforest
+8) python3 main.py data/Human_Activity_Recognition_Using_Smartphones_Data.csv bagging
+9) python3 main.py data/Human_Activity_Recognition_Using_Smartphones_Data.csv ensemblevote
+10) python3 main.py data/Human_Activity_Recognition_Using_Smartphones_Data.csv adaboost
+
+Things done-
+decision tree,
+svm - linear,
+adaboost,
+boosting,
+randomForest,
+naive bayes,
+knn.
+
+Things to be done -
+svm -nonlinear check,
+
+do ensemble as well.
+
+Get the final running times from cluster- after code freeze

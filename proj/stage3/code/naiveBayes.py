@@ -7,7 +7,7 @@ import os
 import numpy as np
 import time
 
-def naiveBayesClassifierTest(X_train, X_test, y_train, y_test):
+def naiveBayesClassifierTest(X_train, X_test, y_train, y_test, X_1_df, Y_1_df):
     path = Path(__file__).parent.absolute()
       #Creates a new directory under svm-linear if it doesn't exist
     Path("output/GaussianNB/").mkdir(parents=True, exist_ok=True)

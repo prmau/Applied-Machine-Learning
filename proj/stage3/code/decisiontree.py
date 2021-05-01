@@ -7,7 +7,14 @@ from yellowbrick.classifier import ClassificationReport
 from yellowbrick.classifier import ClassPredictionError
 import matplotlib.pyplot as plt
 import os
-def decisionTreeTest(X_train, X_test, y_train, y_test, classes):\
+from sklearn.decomposition import PCA
+from mlxtend.plotting import plot_decision_regions
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from statistics import mean
+import numpy as np
+
+def decisionTreeTest(X_train, X_test, y_train, y_test, classes,  X_1_df, Y_1_df):
     
     print('-----------------------------')    
     print('DecisionTree Test was Called. Wait...')
@@ -15,24 +22,28 @@ def decisionTreeTest(X_train, X_test, y_train, y_test, classes):\
     
     
     path = Path(__file__).parent.absolute()
-    depths= [2, 5, 10, 20]
+    depths= list(range(1, 51))
     runningTime = []
     trainAccuracy = []
     testAccuracy = []
-    
+    param = []
+
     #fit the training dataset to linear kernel model
     #capture the start time
     for i in depths:
         start = time.time()
-        clf_gini = DecisionTreeClassifier(criterion='gini', max_depth=i)
+        clf_gini = DecisionTreeClassifier(criterion='gini', max_depth=i, random_state=1)
         clf_gini.fit(X_train, y_train.values.ravel())
 
         y_pred_gini = clf_gini.predict(X_test)
+        y_train_pred_gini = clf_gini.predict(X_train)
         # capture the end time of calculation
         end = time.time()
 
         #Storing the metrics
         runningTime.append(end-start)
+        param.append(i)
+        trainAccuracy.append(accuracy_score(y_train, y_train_pred_gini))
         testAccuracy.append(accuracy_score(y_test, y_pred_gini))
     
     #print(trainAccuracy)
@@ -49,12 +60,12 @@ def decisionTreeTest(X_train, X_test, y_train, y_test, classes):\
     #Generating Test accuracy plot
 
 
-    plt.plot(depths, testAccuracy, 'ro-')
-    plt.legend(['Test Accuracy'])
+    plt.plot(depths, trainAccuracy, 'ro-',depths, testAccuracy, 'bv--')
+    plt.legend(['Train Accuracy', 'Test Accuracy'])
     plt.xlabel('max_depth values')
     plt.ylabel('Accuracy')
-    plt.title("Test Accuracy")
-    strFile = str(path)+"/output/DecisionTree"+"/Test Accuracy.png"
+    plt.title("Decison Tree - Accuracy")
+    strFile = str(path)+"/output/DecisionTree"+"/Accuracy.png"
 
     print(os.path.isfile(strFile))
     if os.path.isfile(strFile):
@@ -80,12 +91,44 @@ def decisionTreeTest(X_train, X_test, y_train, y_test, classes):\
 
     maxValue = max(testAccuracy)
     max_index = testAccuracy.index(maxValue)
+    optimum_param = param[max_index]
 
-    print("The maximum test accuracy - %.3f and the corresponding max_depth value "%(testAccuracy[max_index]))
-    print(depths[max_index])
+    #Printing the average running time
+    print("The average running time - %.3f seconds" %mean(runningTime))
+
+    print("The maximum test accuracy  - %.3f "%maxValue)
+    print("Corresponding MaxDepth value for max test accuracy", optimum_param)
+
+
+    pca = PCA(n_components=2)
+    X_transform = pca.fit_transform(X_1_df)
+
+    X_train1, X_test1, y_train1, y_test1 = train_test_split(pd.DataFrame(X_transform), Y_1_df, random_state=1,
+                                                            test_size=0.2)
+
+    clf_gini = DecisionTreeClassifier(criterion='gini', max_depth=optimum_param).fit(X_train1, np.ravel(y_train1))
+
+    # Generating decision boundary chart
+
+    y = pd.DataFrame(Y_1_df).to_numpy()
+    y = y.astype(np.int).flatten()
+
+    plot_decision_regions(X_transform, y, clf=clf_gini, legend=2)
+
+    # Adding axes annotations
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.title('Decision Boundary')
+
+    strFile = str(path) + "/output/DecisionTree" + "/Decision Boundary.png"
+
+    if os.path.isfile(strFile):
+        os.remove(strFile)
+    plt.savefig(strFile)
+    plt.clf()
 
     #Printing the classification report
-    vizualizer = ClassificationReport(DecisionTreeClassifier(criterion='gini', max_depth= depths[max_index]), classes=[0,1,2,3,4,5], support=True, size=(1400, 1000))
+    vizualizer = ClassificationReport(DecisionTreeClassifier(criterion='gini', max_depth= optimum_param), classes=[0,1,2,3,4,5], support=True, size=(1400, 1000))
     vizualizer.fit(X_train, y_train.values.ravel())
     vizualizer.score(X_test, y_test)
     strFile = str(path)+"/output/DecisionTree"+"/Classification Report.png"
@@ -104,40 +147,3 @@ def decisionTreeTest(X_train, X_test, y_train, y_test, classes):\
     
     
     
-    
-    # Create Decision Tree classifer object
-    #clf_gini = DecisionTreeClassifier(criterion='gini')
-
-    # Train Decision Tree Classifer
-    #clf = clf_gini.fit(X_train,y_train)
-    
-    #Predict the response for test dataset
-    #y_pred = clf.predict(X_test)
-    
- 
-    
-    #print('Accuracy with gini: %.2f' % accuracy_score(y_test, y_pred))
-    #print('-----------------------------')
-    
-    
-    
-    
-    '''
-    clf_entropy = DecisionTreeClassifier(criterion='entropy')
-    
-    clf2 = clf_entropy.fit(X_train, y_train)
-    y_pred = clf2.predict(X_test)
-    
-    
-    
-    print('Accuracy with entropy: %.2f' % accuracy_score(y_test, y_pred))
-    print('-----------------------------')
-    
-    
-    
-    
-    
-    
-    #end = time.time()
-    #print('Running Time is: ', end - start, "seconds")
-    '''

@@ -9,7 +9,8 @@ from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 import seaborn as sns
 from pylab import savefig
-
+from mlxtend.plotting import plot_decision_regions
+from sklearn.decomposition import PCA
 
 #Import model modules
 import decisiontree
@@ -23,6 +24,7 @@ import knn
 import bagging
 import adaboost
 import randomforest
+import ensemble
 
 sys.path.append(".")
 
@@ -187,30 +189,30 @@ def main():
     
     # Execute different model module based on input from user
     if model == 'decisiontree':
-        decisiontree.decisionTreeTest(X_train, X_test, y_train, y_test, classes)
+        decisiontree.decisionTreeTest(X_train, X_test, y_train, y_test, classes, X_1_df, Y_1_df)
 
     elif model == 'svm':
-        svm.svmLinearTest(X_train, X_test, y_train, y_test, classes)
+        svm.svmLinearTest(X_train, X_test, y_train, y_test, classes, X_1_df, Y_1_df)
     
     elif model == 'svmnonlinear':
-        svmnonlinear.svmNonLinearTest(X_train, X_test, y_train, y_test)
+        svmnonlinear.svmNonLinearTest(X_train, X_test, y_train, y_test, X_1_df, Y_1_df)
     
     elif model == 'naivebayes':
-        naiveBayes.naiveBayesClassifierTest(X_train, X_test, y_train, y_test)
+        naiveBayes.naiveBayesClassifierTest(X_train, X_test, y_train, y_test, X_1_df, Y_1_df)
     
     elif model == 'logisticregression':
-        logisticregression.logisticRegressionTest(X_train, X_test, y_train, y_test)
+        logisticregression.logisticRegressionTest(X_train, X_test, y_train, y_test, X_1_df, Y_1_df)
     
     elif model == 'knn':
-        knn.knnTest(X_train, X_test, y_train, y_test)
+        knn.knnTest(X_train, X_test, y_train, y_test, X_1_df, Y_1_df)
     elif model == 'bagging':
-        bagging.baggingTest(X_train, X_test, y_train, y_test)
+        bagging.baggingTest(X_train, X_test, y_train, y_test, X_1_df, Y_1_df)
     elif model == 'adaboost':
-        adaboost.adaboostTest(X_train, X_test, y_train, y_test)
+        adaboost.adaboostTest(X_train, X_test, y_train, y_test, X_1_df, Y_1_df)
     elif model == 'randomforest':
-        randomforest.randomForestTest(X_train, X_test, y_train, y_test)
-    
-    
+        randomforest.randomForestTest(X_train, X_test, y_train, y_test, X_1_df, Y_1_df)
+    elif model == 'ensemblevote':
+        ensemble.ensembleClassifier(X_train, X_test, y_train, y_test, X_1_df, Y_1_df)
     else:
         print("please enter the correct classifier name")
         sys.exit()
