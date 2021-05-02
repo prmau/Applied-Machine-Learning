@@ -502,5 +502,10 @@ std of the standardized test set :  [0.91372914 0.79623857 1.01228751 1.00320141
  1.04261191 1.05370528 1.01161429 1.00503814 1.00704296 1.00063347
  0.96289262 1.01059652 0.92971487]
 -----------------------------
-Adaboost Test was Called. Wait...
-Classification report, class prediction error, Test accuracy, Running time for Bagging is generated in the output folder
+Ensemble Vote Classifier was Called. Wait...
+Accuracy: 0.98 (+/- 0.02) [Logistic Regression]
+Accuracy: 0.98 (+/- 0.02) [Support Vector Machine]
+Accuracy: 0.95 (+/- 0.02) [K Nearest Neighbor]
+Accuracy: 0.91 (+/- 0.04) [Decision Tree]
+Accuracy: 0.98 (+/- 0.02) [Ensemble]
+Running time 2885.077

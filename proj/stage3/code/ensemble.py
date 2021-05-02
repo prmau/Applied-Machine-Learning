@@ -36,8 +36,10 @@ def ensembleClassifier(X_train, X_test, y_train, y_test, X_1_df, Y_1_df):
     clf4 = DecisionTreeClassifier(max_depth=23, criterion='gini')  #
 
     labels = ['Logistic Regression', 'Support Vector Machine', 'K Nearest Neighbor', 'Decision Tree', 'Ensemble']
-    eclf = EnsembleVoteClassifier(clfs=[clf1, clf2, clf3, clf4], weights=[1, 1, 1, 1], random_state =1)
-
+    
+    start = time.time()
+    eclf = EnsembleVoteClassifier(clfs=[clf1, clf2, clf3, clf4], weights=[1, 1, 1, 1])
+    
     for clf, label in zip([clf1, clf2, clf3, clf4, eclf], labels):
         clf.fit(X_1_df, Y_1_df)
 
@@ -45,4 +47,7 @@ def ensembleClassifier(X_train, X_test, y_train, y_test, X_1_df, Y_1_df):
                                                  cv=20,
                                                  scoring='accuracy')
         print("Accuracy: %0.2f (+/- %0.2f) [%s]" % (scores.mean(), scores.std(), label))
+    
+    end = time.time()
+    print("Running time %.3f" %(end-start))
     return

@@ -31,25 +31,27 @@ def adaboostTest(X_train, X_test, y_train, y_test, X_1_df, Y_1_df):
     trainAccuracy = []
     testAccuracy = []
     param = []
-
+    i = 21
+    
     #fit the training dataset to linear kernel model
     #capture the start time
-    for i in depths:
-        start = time.time()
+    # for i in depths:
+    start = time.time()
     
-        clf = AdaBoostClassifier(base_estimator=DecisionTreeClassifier(max_depth=i), random_state=1, n_estimators=100)
-        clf.fit(X_train, y_train.values.ravel())
+    clf = AdaBoostClassifier(base_estimator=DecisionTreeClassifier(max_depth=i), random_state=1, n_estimators=100)
+    clf.fit(X_train, y_train.values.ravel())
         
-        y_pred = clf.predict(X_test)
-        y_train_pred = clf.predict(X_train)
-        # capture the end time of calculation
-        end = time.time()
+    y_pred = clf.predict(X_test)
+    y_train_pred = clf.predict(X_train)
+    # capture the end time of calculation
+    end = time.time()
 
-        #Storing the metrics
-        param.append(i)
-        runningTime.append(end-start)
-        trainAccuracy.append(accuracy_score(y_train, y_train_pred))
-        testAccuracy.append(accuracy_score(y_test, y_pred))
+    #Storing the metrics
+    param.append(i)
+    runningTime.append(end-start)
+    trainAccuracy.append(accuracy_score(y_train, y_train_pred))
+    testAccuracy.append(accuracy_score(y_test, y_pred))
+    
     
     #print(trainAccuracy)
     #print(testAccuracy)
@@ -92,7 +94,7 @@ def adaboostTest(X_train, X_test, y_train, y_test, X_1_df, Y_1_df):
     plt.clf()
 
 
-    #Finding the max accuracy
+    # #Finding the max accuracy
 
 
     maxValue = max(testAccuracy)

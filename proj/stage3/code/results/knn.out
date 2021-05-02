@@ -504,7 +504,7 @@ std of the standardized test set :  [0.91372914 0.79623857 1.01228751 1.00320141
 -----------------------------
 KNN Classifier Test was Called. Wait...
 Classification report, class prediction error, Test accuracy, Running time for KNN is generated in the output folder
-The average running time - 8.219 seconds
+The average running time - 8.015 seconds
 The maximum Cross validation score - 0.946
 The maximum test accuracy  - 0.973 
 Corresponding K value  1
