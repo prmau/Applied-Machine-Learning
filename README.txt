@@ -10,6 +10,7 @@ pip3 install imblearn
 
 pip3 install yellowbrick
 
+pip3 install mlxtend
 
 How to run the python program?
 
@@ -29,18 +30,3 @@ Third argu(optional) : model name
 9) python3 main.py data/Human_Activity_Recognition_Using_Smartphones_Data.csv ensemblevote
 10) python3 main.py data/Human_Activity_Recognition_Using_Smartphones_Data.csv adaboost
 
-Things done-
-decision tree,
-svm - linear,
-adaboost,
-boosting,
-randomForest,
-naive bayes,
-knn.
-
-Things to be done -
-svm -nonlinear check,
-
-do ensemble as well.
-
-Get the final running times from cluster- after code freeze

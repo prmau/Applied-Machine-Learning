@@ -1,48 +1,16 @@
 /project/ml-classification/Applied-Machine-Learning/proj/stage3/code/main.py:168: DeprecationWarning: bias and ddof have no effect and are deprecated
   dfCorr = np.corrcoef(X_1_df,Y_1_df,rowvar=False, bias=True)
-/project/ml-classification/Applied-Machine-Learning/proj/stage3/code/main.py:168: DeprecationWarning: bias and ddof have no effect and are deprecated
-  dfCorr = np.corrcoef(X_1_df,Y_1_df,rowvar=False, bias=True)
-/project/ml-classification/Applied-Machine-Learning/proj/stage3/code/main.py:168: DeprecationWarning: bias and ddof have no effect and are deprecated
-  dfCorr = np.corrcoef(X_1_df,Y_1_df,rowvar=False, bias=True)
-/project/ml-classification/Applied-Machine-Learning/proj/stage3/code/main.py:168: DeprecationWarning: bias and ddof have no effect and are deprecated
-  dfCorr = np.corrcoef(X_1_df,Y_1_df,rowvar=False, bias=True)
-/project/ml-classification/Applied-Machine-Learning/proj/stage3/code/main.py:168: DeprecationWarning: bias and ddof have no effect and are deprecated
-  dfCorr = np.corrcoef(X_1_df,Y_1_df,rowvar=False, bias=True)
-/project/ml-classification/Applied-Machine-Learning/proj/stage3/code/main.py:168: DeprecationWarning: bias and ddof have no effect and are deprecated
-  dfCorr = np.corrcoef(X_1_df,Y_1_df,rowvar=False, bias=True)
-/project/ml-classification/Applied-Machine-Learning/proj/stage3/code/main.py:168: DeprecationWarning: bias and ddof have no effect and are deprecated
-  dfCorr = np.corrcoef(X_1_df,Y_1_df,rowvar=False, bias=True)
-/project/ml-classification/Applied-Machine-Learning/proj/stage3/code/main.py:168: DeprecationWarning: bias and ddof have no effect and are deprecated
-  dfCorr = np.corrcoef(X_1_df,Y_1_df,rowvar=False, bias=True)
-/project/ml-classification/Applied-Machine-Learning/proj/stage3/code/main.py:168: DeprecationWarning: bias and ddof have no effect and are deprecated
-  dfCorr = np.corrcoef(X_1_df,Y_1_df,rowvar=False, bias=True)
-/project/ml-classification/Applied-Machine-Learning/proj/stage3/code/main.py:168: DeprecationWarning: bias and ddof have no effect and are deprecated
-  dfCorr = np.corrcoef(X_1_df,Y_1_df,rowvar=False, bias=True)
-Traceback (most recent call last):
-  File "/project/ml-classification/Applied-Machine-Learning/proj/stage3/code/main.py", line 223, in <module>
-    main()
-  File "/project/ml-classification/Applied-Machine-Learning/proj/stage3/code/main.py", line 215, in main
-    ensemble.ensembleClassifier(X_train, X_test, y_train, y_test, X_1_df, Y_1_df)
-  File "/project/ml-classification/Applied-Machine-Learning/proj/stage3/code/ensemble.py", line 39, in ensembleClassifier
-    eclf = EnsembleVoteClassifier(clfs=[clf1, clf2, clf3, clf4], weights=[1, 1, 1, 1], random_state =1)
-TypeError: __init__() got an unexpected keyword argument 'random_state'
-srun: error: discovery-c34: task 0: Exited with exit code 1
-/home/crushev/.conda/envs/my_env/lib/python3.9/site-packages/sklearn/metrics/_classification.py:1245: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, msg_start, len(result))
-Traceback (most recent call last):
-  File "/project/ml-classification/Applied-Machine-Learning/proj/stage3/code/main.py", line 223, in <module>
-    main()
-  File "/project/ml-classification/Applied-Machine-Learning/proj/stage3/code/main.py", line 211, in main
-    adaboost.adaboostTest(X_train, X_test, y_train, y_test, X_1_df, Y_1_df)
-  File "/project/ml-classification/Applied-Machine-Learning/proj/stage3/code/adaboost.py", line 67, in adaboostTest
-    plt.plot(depths, trainAccuracy, 'ro-',depths, testAccuracy, 'bv--')
-  File "/home/crushev/.conda/envs/my_env/lib/python3.9/site-packages/matplotlib/pyplot.py", line 2840, in plot
-    return gca().plot(
-  File "/home/crushev/.conda/envs/my_env/lib/python3.9/site-packages/matplotlib/axes/_axes.py", line 1743, in plot
-    lines = [*self._get_lines(*args, data=data, **kwargs)]
-  File "/home/crushev/.conda/envs/my_env/lib/python3.9/site-packages/matplotlib/axes/_base.py", line 273, in __call__
-    yield from self._plot_args(this, kwargs)
-  File "/home/crushev/.conda/envs/my_env/lib/python3.9/site-packages/matplotlib/axes/_base.py", line 399, in _plot_args
-    raise ValueError(f"x and y must have same first dimension, but "
-ValueError: x and y must have same first dimension, but have shapes (50,) and (0,)
-srun: error: discovery-c34: task 0: Exited with exit code 1
+/home/crushev/.conda/envs/my_env/lib/python3.9/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+/home/crushev/.conda/envs/my_env/lib/python3.9/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+/home/crushev/.conda/envs/my_env/lib/python3.9/site-packages/sklearn/neighbors/_classification.py:179: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples,), for example using ravel().
+  return self._fit(X, y)
+/home/crushev/.conda/envs/my_env/lib/python3.9/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+/home/crushev/.conda/envs/my_env/lib/python3.9/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+/home/crushev/.conda/envs/my_env/lib/python3.9/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+/home/crushev/.conda/envs/my_env/lib/python3.9/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
