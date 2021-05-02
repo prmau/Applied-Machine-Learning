@@ -27,7 +27,7 @@ from mlxtend.classifier import EnsembleVoteClassifier
 from sklearn.model_selection import cross_val_score
 
 def ensembleClassifier(X_train, X_test, y_train, y_test, X_1_df, Y_1_df):
-    print('-----------------------------')
+    print('------------------------------')
     print('Ensemble Vote Classifier was Called. Wait...')
 
     clf1 = LogisticRegression(C=5.0,  class_weight='balanced', max_iter=10000, random_state= 1 )  # C = 5.0
